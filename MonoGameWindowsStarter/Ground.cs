@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
+using RunnerLibrary;
 namespace MonoGameWindowsStarter
 {
     class Ground
@@ -28,7 +29,7 @@ namespace MonoGameWindowsStarter
         {
             bounds.Width = 1000;
             bounds.Height = 25;
-            bounds.Y = 425;
+            bounds.Y = 400;
             texture = content.Load<Texture2D>("ground");
         }
         public void Update(GameTime gameTime)

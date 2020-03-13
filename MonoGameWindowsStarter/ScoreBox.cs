@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
+using RunnerLibrary;
 namespace MonoGameWindowsStarter
 {
     class ScoreBox
@@ -33,7 +34,7 @@ namespace MonoGameWindowsStarter
         {
             bounds.Width = 25;
             bounds.Height = 25;
-            bounds.Y = 350;
+            bounds.Y = 330;
         }
         public void Update(GameTime gameTime)
         {

@@ -41,7 +41,6 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BoundingRectangle.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Ground.cs" />
@@ -63,6 +62,16 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RunnerContentExtension\RunnerContentExtension.csproj">
+      <Project>{578fca8f-116b-41b6-b8a2-d2dee9d55ee0}</Project>
+      <Name>RunnerContentExtension</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RunnerLibrary\RunnerLibrary.csproj">
+      <Project>{af800733-0746-4648-95ad-b8e038d20be8}</Project>
+      <Name>RunnerLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

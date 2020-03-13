@@ -10,6 +10,9 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\..\RunnerContentExtension\bin\Debug\RunnerContentExtension.dll
+/reference:..\..\RunnerLibrary\bin\Debug\RunnerLibrary.dll
+/reference:..\..\RunnerContentExtension\bin\Debug\MonoGame.Framework.Content.Pipeline.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -44,6 +47,11 @@
 /processorParam:Quality=Best
 /build:Jump.wav
 
+#begin level1.tmx
+/importer:TilemapImporter
+/processor:TilemapProcessor
+/build:level1.tmx
+
 #begin Player.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -67,4 +75,21 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:spike.png
+
+#begin spritesheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:spritesheet.png
+
+#begin tiledspritesheet.tsx
+/importer:TilesetImporter
+/processor:TilesetProcessor
+/build:tiledspritesheet.tsx
 

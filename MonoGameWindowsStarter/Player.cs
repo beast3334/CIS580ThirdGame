@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
+using RunnerLibrary;
 namespace MonoGameWindowsStarter
 {
     enum State
@@ -43,7 +44,7 @@ namespace MonoGameWindowsStarter
             bounds.Width = 25;
             bounds.Height = 25;
             bounds.X = 25;
-            bounds.Y = 400;
+            bounds.Y = 375;
             texture = content.Load<Texture2D>("Player");
             jumpEffect = content.Load<SoundEffect>("Jump");
         }
@@ -67,9 +68,9 @@ namespace MonoGameWindowsStarter
                     break;
                 case State.STATE_FALLING:
                     bounds.Y += game.speed + 2;
-                    if(bounds.Y >= 400)
+                    if(bounds.Y >= 375)
                     {
-                        bounds.Y = 400;
+                        bounds.Y = 375;
                         state = State.STATE_MOVING;
                     }
                     break;

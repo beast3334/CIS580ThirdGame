@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>../../../../../Downloads/spritesheet.tsx</SourceFile>
+  <SourceTime>2020-03-04T17:51:37.5060871-06:00</SourceTime>
+  <DestFile>C:/Users/Nathan/source/repos/CIS580ThirdGame/MonoGameWindowsStarter/Content/bin/Windows/Content/../../../../../Downloads/spritesheet_0.xnb</DestFile>
+  <DestTime>2020-03-04T17:59:31.4650909-06:00</DestTime>
+  <Importer>TilesetImporter</Importer>
+  <ImporterTime>2020-03-04T17:58:13.2291672-06:00</ImporterTime>
+  <Processor>TilesetProcessor</Processor>
+  <ProcessorTime>2020-03-04T17:58:13.2291672-06:00</ProcessorTime>
+  <Dependencies>
+    <string>spritesheet.png</string>
+  </Dependencies>
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

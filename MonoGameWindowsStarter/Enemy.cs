@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
+using RunnerLibrary;
 namespace MonoGameWindowsStarter
 {
     class Enemy
@@ -33,7 +34,7 @@ namespace MonoGameWindowsStarter
         {
             bounds.Width = 50;
             bounds.Height = 35;
-            bounds.Y = 390;
+            bounds.Y = 370;
             texture = content.Load<Texture2D>("spike");
         }
         public void Update(GameTime gameTime)

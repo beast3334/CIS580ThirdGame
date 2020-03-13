@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using System.Diagnostics;
+using RunnerLibrary;
+using RunnerContentExtension;
 namespace MonoGameWindowsStarter
 {
     /// <summary>
@@ -28,6 +30,7 @@ namespace MonoGameWindowsStarter
         SoundEffect hitEffect;
         SpriteFont font;
         Random random;
+        Tilemap tilemap;
         int randomSpawnRate = 1;
         Color currentColor = new Color();
         Color finalColor = new Color();
@@ -79,6 +82,7 @@ namespace MonoGameWindowsStarter
             hitEffect = Content.Load<SoundEffect>("Hit_Hurt");
             font = Content.Load<SpriteFont>("font");
             player.LoadContent();
+            tilemap = Content.Load<Tilemap>("level1");
             // TODO: use this.Content to load your game content here
         }
 
@@ -200,6 +204,7 @@ namespace MonoGameWindowsStarter
             offset = new Vector2(200, 300) - new Vector2(player.Bounds.X, player.Bounds.Y);
             var t = Matrix.CreateTranslation(offset.X, offset.Y, 0);
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, t);
+            tilemap.Draw(spriteBatch);
             if (!gameOver)
             {
                 if (currentColor != oldColor)
