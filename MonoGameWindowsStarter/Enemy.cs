@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
 namespace MonoGameWindowsStarter
 {
-    class Enemy
+    class Enemy: ISprite
     {
         BoundingRectangle bounds;
         Game1 game;
@@ -39,7 +39,7 @@ namespace MonoGameWindowsStarter
         public void Update(GameTime gameTime)
         {
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.Draw(texture, bounds, Color.White);
         }

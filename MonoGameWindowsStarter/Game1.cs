@@ -39,6 +39,7 @@ namespace MonoGameWindowsStarter
         int score = 0;
         int lives = 3;
         public int speed = 3;
+        ParallaxLayer enemyLayer;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -75,10 +76,85 @@ namespace MonoGameWindowsStarter
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             ground = new Ground(this, Content, -200);
+            //Background
+
+
+            var backgroundTexture = Content.Load<Texture2D>("background");
+            var backgroundSprites = new StaticSprite[100];
+
+            for (int i = 0; i < 100; i++)
+            {
+                backgroundSprites[i] = new StaticSprite(backgroundTexture, new Vector2(i * 384, 0));
+            }
+            
+
+            var backgroundLayer = new ParallaxLayer(this);
+            backgroundLayer.Sprites.AddRange(backgroundSprites);
+            backgroundLayer.DrawOrder = 0;
+            Components.Add(backgroundLayer);
+            /////////////////////////////////////////////////
+            //Midground
+            var midgroundTextures = new Texture2D[]
+            {
+                        Content.Load<Texture2D>("midground"),
+                        
+            };
+            var midgroundSprites = new StaticSprite[500];
+            for (int i = 0; i < 500; i++)
+            {
+                midgroundSprites[i] = new StaticSprite(midgroundTextures[0], new Vector2(i * 800, 39));
+            }
+
+            var midgroundLayer = new ParallaxLayer(this);
+            midgroundLayer.Sprites.AddRange(midgroundSprites);
+            midgroundLayer.DrawOrder = 1;
+            Components.Add(midgroundLayer);
+            //////////////////////////////////////////////
+            //Foreground
+            var foregroundTextures = new List<Texture2D>()
+            {
+                Content.Load<Texture2D>("foreground"),
+
+            };
+            var foregroundSprites = new List<StaticSprite>();
+            for (int i = 0; i < 500; i++)
+            {
+                var position = new Vector2(i * 800, 174);
+                var sprite = new StaticSprite(foregroundTextures[0], position);
+                foregroundSprites.Add(sprite);
+            }
+            var foregroundLayer = new ParallaxLayer(this);
+            foreach (var sprite in foregroundSprites)
+            {
+                foregroundLayer.Sprites.Add(sprite);
+            }
+            foregroundLayer.DrawOrder = 2;
+            Components.Add(foregroundLayer);
+            //////////////////////////////////
             spriteBatch = new SpriteBatch(GraphicsDevice);
             hitEffect = Content.Load<SoundEffect>("Hit_Hurt");
             font = Content.Load<SpriteFont>("font");
             player.LoadContent();
+
+            var playerLayer = new ParallaxLayer(this);
+            playerLayer.Sprites.Add(player);
+            playerLayer.DrawOrder = 4;
+            Components.Add(playerLayer);
+
+            var groundLayer = new ParallaxLayer(this);
+            groundLayer.Sprites.Add(ground);
+            groundLayer.DrawOrder = 3;
+            Components.Add(groundLayer);
+
+            enemyLayer = new ParallaxLayer(this);
+            enemyLayer.DrawOrder = 3;
+            Components.Add(enemyLayer);
+            backgroundLayer.ScrollController = new PlayerTrackingScrollController(player, 0.1f);
+            midgroundLayer.ScrollController = new PlayerTrackingScrollController(player, 0.4f);
+            playerLayer.ScrollController = new PlayerTrackingScrollController(player, 1.0f);
+            foregroundLayer.ScrollController = new PlayerTrackingScrollController(player, 1.0f);
+            groundLayer.ScrollController = new PlayerTrackingScrollController(player, 0.2f);
+            enemyLayer.ScrollController = new PlayerTrackingScrollController(player, 1f);
             // TODO: use this.Content to load your game content here
         }
 
@@ -98,6 +174,7 @@ namespace MonoGameWindowsStarter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            enemyLayer.Sprites.AddRange(enemyList);
             if (!gameOver)
             {
 
@@ -111,10 +188,7 @@ namespace MonoGameWindowsStarter
                 // TODO: Add your update logic here
                 player.Update(gameTime);
                 ground.Update(gameTime);
-                if (offset.X - 500 <= prevOffset)
-                {
-                    ground = new Ground(this, Content, (int)offset.X);
-                }
+
 
                 if (enemySpawnTimer.TotalSeconds >= randomSpawnRate)
                 {
@@ -183,7 +257,7 @@ namespace MonoGameWindowsStarter
                     enemyList.Clear();
                     scoreBoxList.Clear();
                 }
-            }
+            }     
             base.Update(gameTime);
         }
         public void GetBackground(Color finalColor)
@@ -215,11 +289,11 @@ namespace MonoGameWindowsStarter
                 spriteBatch.DrawString(font, "Score: " + score, new Vector2(player.Bounds.X - 200, player.Bounds.Y - 300), Color.White);
                 spriteBatch.DrawString(font, "Lives: " + lives, new Vector2(player.Bounds.X - 200, player.Bounds.Y - 280), Color.White);
                 spriteBatch.DrawString(font, "Difficulty: " + (speed - 2), new Vector2(player.Bounds.X - 200, player.Bounds.Y - 260), Color.White);
-                player.Draw(spriteBatch);
-                ground.Draw(spriteBatch);
+                base.Draw(gameTime);
+                //ground.Draw(spriteBatch);
                 foreach (Enemy enemy in enemyList)
                 {
-                    enemy.Draw(spriteBatch);
+                    //enemy.Draw(spriteBatch);
                 }
                 
             }
@@ -228,7 +302,7 @@ namespace MonoGameWindowsStarter
                 spriteBatch.DrawString(font, "Game Over, Press Space to Play Again!", new Vector2(player.Bounds.X + 75, player.Bounds.Y - 50), Color.White);
             }
             spriteBatch.End();
-            base.Draw(gameTime);
+            
         }
     }
 }

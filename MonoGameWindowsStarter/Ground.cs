@@ -10,9 +10,9 @@ using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
 namespace MonoGameWindowsStarter
 {
-    class Ground
+    class Ground: ISprite
     {
-        BoundingRectangle bounds;
+        public BoundingRectangle bounds;
         Game1 game;
         Texture2D texture;
         ContentManager content;
@@ -21,12 +21,12 @@ namespace MonoGameWindowsStarter
         {
             this.game = game;
             this.content = content;
-            bounds.X = -x;
+            bounds.X = -500;
             LoadContent();
         }
         public void LoadContent()
         {
-            bounds.Width = 1000;
+            bounds.Width = 100000;
             bounds.Height = 25;
             bounds.Y = 425;
             texture = content.Load<Texture2D>("ground");
@@ -34,7 +34,7 @@ namespace MonoGameWindowsStarter
         public void Update(GameTime gameTime)
         {
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.Draw(texture, bounds, Color.White);
         }

@@ -16,7 +16,7 @@ namespace MonoGameWindowsStarter
         STATE_JUMPING,
         STATE_FALLING
     }
-    class Player
+    public class Player:ISprite
     {
         BoundingRectangle bounds;
         Game1 game;
@@ -78,7 +78,7 @@ namespace MonoGameWindowsStarter
             }
             bounds.X += game.speed;
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.Draw(texture, bounds, Color.White);
         }

@@ -33,7 +33,7 @@ namespace MonoGameWindowsStarter
         {
             bounds.Width = 25;
             bounds.Height = 25;
-            bounds.Y = 350;
+            bounds.Y = 325;
         }
         public void Update(GameTime gameTime)
         {
